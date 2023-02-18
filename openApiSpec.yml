@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: MoviesCollection
+  version: 1.0.0
+servers:
+  - url: http://{{host}}
+paths:
+  /movies/:
+    post:
+      tags:
+        - default
+      summary: CreateMovie
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                moviename:
+                  type: string
+                  example: Sholay
+                movieDirector:
+                  type: string
+                  example: Ramesh Sippy
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      summary: GetMovies
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Date:
+              schema:
+                type: string
+                example: Sun, 22 Jan 2023 16:42:45 GMT
+            Content-Length:
+              schema:
+                type: integer
+                example: '254'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        movieId:
+                          type: integer
+                        moviename:
+                          type: string
+                        director:
+                          type: string
+              example:
+                type: success
+                data:
+                  - movieId: 1
+                    moviename: Wolf Of Wallstreet
+                    director: Martin Scorsese
+                  - movieId: 3
+                    moviename: GodFather
+                    director: Francis Ford Coppola
+                  - movieId: 2
+                    moviename: Jungle Book
+                    director: Jon Favreau
+                message: ''
+    delete:
+      tags:
+        - default
+      summary: DeleteMovies
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /movies/{id}:
+    delete:
+      tags:
+        - default
+      summary: DeleteMovie
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

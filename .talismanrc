@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: go.sum
+  checksum: feed0e375fa5aa83268f4f09f7920569411ebd625a6c28441fed294cbfb38af7
+- filename: src/pkg/main/index.go
+  checksum: 062dee98b765fe81319d23ca1ff408fb54e3e76f217ed667747985caa5796201
+version: "1.0"
